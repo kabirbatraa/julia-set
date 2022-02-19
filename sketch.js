@@ -13,7 +13,7 @@ let juliaTheta;
 let juliaR = 0.7885;
 
 function setup() {
-  createCanvas(1000, 800);
+  createCanvas(1000, 700);
   pixelDensity(1);
   juliaTheta = PI/4;
 }
@@ -28,9 +28,9 @@ function draw() {
 
       // let posX = (x - 0.74*(400 + zoom) - width/2) / (400 + zoom);
       // let posX = (x - 0.5*300 - width/2) / (300);
-      let posX = (x - width/2) / (300);
+      let posX = (x - width/2) / (250);
       // let poxY = (y - 0.21101*(400 + zoom) - height/2) / (400 + zoom);
-      let poxY = (y - height/2) / (300);
+      let poxY = (y - height/2) / (250);
       let lifespan = inMandelbrot(posX, poxY);
       // let innit = false;
       // console.log(innit);
