@@ -5,14 +5,17 @@ let zoom = 1;
 // let zoomAcc = 0.3;
 let zoomMult = 1.05;
 
-let pixelSize = 10;
+let pixelSize = 1;
 
-let iterations = 250;
+let iterations = 100;
+
+let juliaTheta;
+let juliaR = 0.7885;
 
 function setup() {
   createCanvas(1000, 800);
   pixelDensity(1);
-  
+  juliaTheta = PI/4;
 }
 
 function draw() {
@@ -23,8 +26,11 @@ function draw() {
   for (let y = 0; y < height; y += pixelSize) {
     for (let x = 0; x < width; x += pixelSize) {
 
-      let posX = (x - 0.74*(400 + zoom) - width/2) / (400 + zoom);
-      let poxY = (y - 0.21101*(400 + zoom) - height/2) / (400 + zoom);
+      // let posX = (x - 0.74*(400 + zoom) - width/2) / (400 + zoom);
+      // let posX = (x - 0.5*300 - width/2) / (300);
+      let posX = (x - width/2) / (300);
+      // let poxY = (y - 0.21101*(400 + zoom) - height/2) / (400 + zoom);
+      let poxY = (y - height/2) / (300);
       let lifespan = inMandelbrot(posX, poxY);
       // let innit = false;
       // console.log(innit);
@@ -33,7 +39,7 @@ function draw() {
       
       let c = color(map(lifespan, 0, iterations, 0, 255), 255, 255);
       if (lifespan == -1) {
-        c = color("black");
+        c = color("white");
       }
 
       let index = 4 * (x + y * width);
@@ -56,7 +62,8 @@ function draw() {
   // zoom += zoomVel;
   // zoomVel += zoomAcc;
   // zoomAcc += 0.1;
-  // filter(INVERT);
+  filter(INVERT);
+  juliaTheta += PI/80;
 }
 
 
@@ -67,11 +74,16 @@ function inMandelbrot(ca, cb) {
 
   // let goesToInfinity = false;
   // let lifespan = 0;
-  let za = 0;
-  let zb = 0;
+  let za = ca;
+  let zb = cb;
   for (let i = 0; i < iterations; i++) {
-    newZa = za * za - zb * zb + ca;
-    newZb = 2 * za * zb + cb;
+    // newZa = za * za - zb * zb + ca;
+    // newZb = 2 * za * zb + cb;
+    newZa = za * za - zb * zb;
+    newZb = 2 * za * zb;
+
+    newZa += juliaR * cos(juliaTheta);
+    newZb += juliaR * sin(juliaTheta);
 
     if (newZa * newZa + newZb * newZb > infinitySquared) {
       return i;
