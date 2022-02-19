@@ -5,7 +5,7 @@ let zoom = 1;
 // let zoomAcc = 0.3;
 let zoomMult = 1.05;
 
-let pixelSize = 1;
+let pixelSize = 3;
 
 let iterations = 100;
 
