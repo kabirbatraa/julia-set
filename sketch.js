@@ -5,6 +5,7 @@ let zoom = 1;
 // let zoomAcc = 0.3;
 let zoomMult = 1.05;
 
+let pixelSlider;
 let pixelSize = 3;
 
 let iterations = 100;
@@ -16,12 +17,15 @@ function setup() {
   createCanvas(1000, 700);
   pixelDensity(1);
   juliaTheta = PI/4;
+
+  pixelSlider = createSlider(1, 5, 3);
 }
 
 function draw() {
   background(220);
 
   loadPixels();
+  pixelSize = pixelSlider.value();
 
   for (let y = 0; y < height; y += pixelSize) {
     for (let x = 0; x < width; x += pixelSize) {
