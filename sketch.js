@@ -1,4 +1,4 @@
-
+p5.disableFriendlyErrors = true;
 
 let zoom = 1;
 // let zoomVel = 1;
@@ -86,8 +86,8 @@ function inMandelbrot(ca, cb) {
     newZa = za * za - zb * zb;
     newZb = 2 * za * zb;
 
-    newZa += juliaR * cos(juliaTheta);
-    newZb += juliaR * sin(juliaTheta);
+    newZa += juliaR * Math.cos(juliaTheta);
+    newZb += juliaR * Math.sin(juliaTheta);
 
     if (newZa * newZa + newZb * newZb > infinitySquared) {
       return i;
