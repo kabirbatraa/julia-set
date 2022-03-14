@@ -19,6 +19,8 @@ function setup() {
   juliaTheta = PI/4;
 
   pixelSlider = createSlider(1, 5, 3);
+
+  frameRate(20);
 }
 
 function draw() {
